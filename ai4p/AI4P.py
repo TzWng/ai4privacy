@@ -8,14 +8,17 @@ validator = class_validators.validator
 
 
 class Anonymizer(BaseModel):
-    use_gpu = True
+    use_gpu: bool = Field(default=True)  # 作为字段
+    anonymizer_model_tag: str = Field(default="Isotonic/distilbert_finetuned_ai4privacy")
+    model_loaded: bool = Field(default=False)
+    device: int = Field(default=-1)
 
-    @validator("device", pre=True)
-    def set_device(cls, value, values):
-        if values["use_gpu"]:
-            return 0
-        else:
-            return -1
+    @validator("device", pre=True, always=True)
+    def set_device(cls, v, values):
+        if values.get("use_gpu"):
+            return 0  # GPU
+        return -1  # CPU
+    
 
     anonymizer_model_tag: str = Field("Isotonic/distilbert_finetuned_ai4privacy")
     model_loaded: bool = False
