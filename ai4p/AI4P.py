@@ -8,7 +8,7 @@ validator = class_validators.validator
 
 
 class Anonymizer(BaseModel):
-    use_gpu: bool = False
+    use_gpu: bool = True
 
     @validator("device", pre=True)
     def set_device(cls, value, values):
