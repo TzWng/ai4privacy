@@ -9,7 +9,7 @@ validator = class_validators.validator
 
 class Anonymizer(BaseModel):
     use_gpu: bool = Field(default=True)  # 作为字段
-    anonymizer_model_tag: str = Field(default="Isotonic/distilbert_finetuned_ai4privacy")
+    anonymizer_model_tag: str = Field(default="Isotonic/distilbert_finetuned_ai4privacy_v2")
     model_loaded: bool = Field(default=False)
     device: int = Field(default=-1)
 
@@ -20,7 +20,7 @@ class Anonymizer(BaseModel):
         return -1  # CPU
     
 
-    anonymizer_model_tag: str = Field("Isotonic/distilbert_finetuned_ai4privacy")
+    anonymizer_model_tag: str = Field("Isotonic/distilbert_finetuned_ai4privacy_v2")
     model_loaded: bool = False
     device: int = Field(default=-1, alias="device")
 
