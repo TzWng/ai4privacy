@@ -12,6 +12,7 @@ class Anonymizer(BaseModel):
     anonymizer_model_tag: str = Field(default="Isotonic/distilbert_finetuned_ai4privacy_v2")
     model_loaded: bool = Field(default=False)
     device: int = Field(default=-1)
+    anonymizer: Any = Field(default=None) 
 
     @validator("device", pre=True, always=True)
     def set_device(cls, v, values):
@@ -23,6 +24,7 @@ class Anonymizer(BaseModel):
     anonymizer_model_tag: str = Field("Isotonic/distilbert_finetuned_ai4privacy_v2")
     model_loaded: bool = False
     device: int = Field(default=-1, alias="device")
+
 
     def __init__(self):
         super().__init__()
